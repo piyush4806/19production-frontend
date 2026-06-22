@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ZoomIn } from 'lucide-react';
+import { initialGallery } from '../data/initialPortfolio';
 
 /**
  * BTS & Studio Gallery View (With robust image loading fallbacks and perfect alignments)
@@ -11,8 +12,17 @@ export default function Gallery({ onSelectImage }) {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/gallery`)
       .then(res => res.json())
-      .then(data => setGalleryItems(data))
-      .catch(err => console.error(err));
+      .then(data => {
+        if (data && data.length > 0) {
+          setGalleryItems(data);
+        } else {
+          setGalleryItems(initialGallery);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setGalleryItems(initialGallery);
+      });
   }, []);
   
   const categories = ['ALL', 'Studio', 'Shoots', 'Vibe'];

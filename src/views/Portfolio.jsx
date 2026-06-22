@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Eye, Video } from 'lucide-react';
+import { initialPortfolio } from '../data/initialPortfolio';
 
 /**
  * Filterable Video Portfolio View
@@ -11,8 +12,17 @@ export default function Portfolio({ onSelectMedia }) {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/portfolio`)
       .then(res => res.json())
-      .then(data => setPortfolioItems(data))
-      .catch(err => console.error(err));
+      .then(data => {
+        if (data && data.length > 0) {
+          setPortfolioItems(data);
+        } else {
+          setPortfolioItems(initialPortfolio);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setPortfolioItems(initialPortfolio);
+      });
   }, []);
 
   const categories = ['ALL', 'Music Video', 'Reels', 'Model Shoot', 'Cinematic', 'Commercial'];

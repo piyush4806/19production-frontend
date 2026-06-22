@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Check, ArrowRight, Music, AudioLines, Mic, Camera, Film, PlayCircle, Video, Image } from 'lucide-react';
+import { initialServices } from '../data/initialServices';
 
 /**
  * Services Selection View
@@ -10,8 +11,17 @@ export default function Services({ onSelectService }) {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/services`)
       .then(res => res.json())
-      .then(data => setServices(data))
-      .catch(err => console.error(err));
+      .then(data => {
+        if (data && data.length > 0) {
+          setServices(data);
+        } else {
+          setServices(initialServices);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setServices(initialServices);
+      });
   }, []);
 
   // Map descriptive icon components based on service category
