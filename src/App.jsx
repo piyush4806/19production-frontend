@@ -49,7 +49,7 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // 2.5 seconds loading
+    }, 4500); // 4.5 seconds loading to allow 3D iframe to render
     return () => clearTimeout(timer);
   }, []);
 

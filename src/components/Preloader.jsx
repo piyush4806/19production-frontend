@@ -10,25 +10,58 @@ export default function Preloader() {
       left: 0,
       width: '100vw',
       height: '100vh',
-      backgroundColor: 'var(--bg-pure)',
+      backgroundColor: '#000000', // Match Sketchfab default background
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 99999
     }}>
+      {/* Full screen wrapper for 3D model to prevent cropping the camera */}
       <motion.div
-        animate={{ rotateY: 360 }}
-        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-        style={{ marginBottom: '1.5rem', color: 'var(--accent-red)' }}
+        initial={{ opacity: 0, scale: 0.35 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 2.0, duration: 1.2, ease: "easeOut" }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: 'hidden', // Hide iframe edges
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1
+        }}
       >
-        <Camera className="preloader-icon" strokeWidth={1.5} />
+        <iframe
+          title="Camcorder"
+          frameBorder="0"
+          allowFullScreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking="true"
+          execution-while-out-of-viewport="true"
+          execution-while-not-rendered="true"
+          web-share="true"
+          src="https://sketchfab.com/models/c1099addc1184daf86f4d6eead4ef330/embed?autostart=1&transparent=1&autospin=0.5&ui_theme=dark&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0&ui_watermark_link=0&ui_hint=0"
+          className="preloader-iframe"
+        ></iframe>
       </motion.div>
+
+      {/* Overlay Title text at the bottom */}
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, textShadow: '0px 0px 15px var(--accent-red-glow)' }}
         transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
         className="preloader-title"
+        style={{
+          position: 'absolute',
+          bottom: '12%',
+          zIndex: 2
+        }}
       >
         19Production
       </motion.h1>
