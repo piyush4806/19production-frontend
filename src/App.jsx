@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import BookingModal from './components/BookingModal';
 import Lightbox from './components/Lightbox';
+import Preloader from './components/Preloader';
 
 // Views
 import Home from './views/Home';
@@ -22,6 +23,9 @@ import Admin from './views/Admin';
 export default function App() {
   // Navigation Routing State
   const [activePage, setActivePage] = useState('home');
+  
+  // App Loading State
+  const [isLoading, setIsLoading] = useState(true);
 
   // Dynamic Data States (LocalStorage Synchronized)
   const [theme, setTheme] = useState(() => {
@@ -40,6 +44,14 @@ export default function App() {
   // Modals Toggles State
   const [calculatorService, setCalculatorService] = useState(null);
   const [lightboxItem, setLightboxItem] = useState(null);
+
+  // Loading Screen Timer
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500); // 2.5 seconds loading
+    return () => clearTimeout(timer);
+  }, []);
 
   // Initialize Databases & LocalStorage on Mount
   useEffect(() => {
@@ -206,6 +218,10 @@ export default function App() {
       });
     }
   };
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <div className="app-container" data-theme={theme}>
