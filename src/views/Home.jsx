@@ -37,7 +37,7 @@ export default function Home({ onNavigate }) {
       style={{ position: 'relative' }}
     >
       {/* Animated Hero Section */}
-      <section className="hero-section" style={{ position: 'relative', overflow: 'hidden', padding: '6rem 0' }}>
+      <section className="hero-section" style={{ position: 'relative', overflow: 'hidden' }}>
         
         {/* Three.js 3D Interactive Ambient Scene (Warm Gold/Bronze Starfield) */}
         <ThreeBackground />
@@ -59,11 +59,11 @@ export default function Home({ onNavigate }) {
               </div>
               
               {/* Monochromatic Solid Title (No glowing drop shadow as requested) */}
-              <h1 style={{ fontSize: '3.6rem', fontWeight: 950, letterSpacing: '-0.02em', margin: '0.5rem 0 1.2rem 0', color: 'var(--text-primary)', textShadow: 'none' }}>
+              <h1 className="hero-title" style={{ fontWeight: 950, letterSpacing: '-0.02em', margin: '0.5rem 0 1.2rem 0', color: 'var(--text-primary)', textShadow: 'none' }}>
                 19PRODUCTION
               </h1>
               
-              <p className="hero-description" style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: '1.65', marginBottom: '2.2rem', textShadow: 'none' }}>
+              <p className="hero-description" style={{ color: 'var(--text-secondary)', lineHeight: '1.65', marginBottom: '2.2rem', textShadow: 'none' }}>
                 Creating cinematic audio and visuals that hit different. We specialize in custom high-fidelity music composition, master mixing, cinematic 4K/6K video shoots, and gritty post-production editing for modern artists, brands, and content creators.
               </p>
               
@@ -114,14 +114,7 @@ export default function Home({ onNavigate }) {
               <img 
                 src="/logo_original.jpg" 
                 alt="19Production Official Logo" 
-                style={{ 
-                  width: '100%', 
-                  maxWidth: '380px', 
-                  height: 'auto', 
-                  borderRadius: '12px', 
-                  objectFit: 'cover',
-                  display: 'block'
-                }}
+                className="hero-logo-img"
               />
             </motion.div>
           </div>

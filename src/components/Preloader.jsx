@@ -22,21 +22,13 @@ export default function Preloader() {
         transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
         style={{ marginBottom: '1.5rem', color: 'var(--accent-red)' }}
       >
-        <Camera size={80} strokeWidth={1.5} />
+        <Camera className="preloader-icon" strokeWidth={1.5} />
       </motion.div>
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, textShadow: '0px 0px 15px var(--accent-red-glow)' }}
         transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.8rem',
-          fontWeight: 900,
-          letterSpacing: '0.15em',
-          color: 'var(--text-primary)',
-          textTransform: 'uppercase',
-          margin: 0
-        }}
+        className="preloader-title"
       >
         19Production
       </motion.h1>
