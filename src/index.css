@@ -566,8 +566,12 @@ a {
   height: 115vh;
   pointer-events: none;
   border: none;
+  flex-shrink: 0;
+  max-width: none;
   /* Let flexbox center it */
 }
+
+
 
 @keyframes view-fade {
   from {
@@ -2558,9 +2562,12 @@ a {
 
 @media (max-width: 768px) {
   .preloader-iframe {
-    width: 300vw; /* Ultra-wide to push UI off-screen horizontally */
-    height: 120vh; /* Slightly taller to push UI off-screen vertically */
-    transform: none; /* Remove scale so camera isn't zoomed in */
+    width: 250vw;
+    height: 120vh;
+    transform: scale(0.4);
+    transform-origin: center center;
+    flex-shrink: 0;
+    max-width: none;
   }
 
   .container {

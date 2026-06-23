@@ -1,5 +1,4 @@
 import React from 'react';
-import { Camera } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Preloader() {
@@ -10,25 +9,24 @@ export default function Preloader() {
       left: 0,
       width: '100vw',
       height: '100vh',
-      backgroundColor: '#000000', // Match Sketchfab default background
+      backgroundColor: '#000000',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 99999
     }}>
-      {/* Full screen wrapper for 3D model to prevent cropping the camera */}
+      {/* Original 3D Camcorder Model */}
       <motion.div
         initial={{ opacity: 0, scale: 0.35 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 2.0, duration: 1.2, ease: "easeOut" }}
+        transition={{ delay: 0.2, duration: 1.2, ease: "easeOut" }}
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          overflow: 'hidden', // Hide iframe edges
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -36,12 +34,9 @@ export default function Preloader() {
         }}
       >
         <iframe
-          title="Camcorder"
+          title="Professional Camera"
           frameBorder="0"
-          allowFullScreen
-          mozallowfullscreen="true"
-          webkitallowfullscreen="true"
-          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; gyroscope; magnetometer; picture-in-picture"
           xr-spatial-tracking="true"
           execution-while-out-of-viewport="true"
           execution-while-not-rendered="true"
